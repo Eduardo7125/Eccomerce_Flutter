@@ -18,17 +18,24 @@ class _LandingState extends State<LandingPage> {
       descript: 'This is a description of the product $index.',
       price: .99 + index,
       rating: .5 + (index % 5) * 0.5,
-      image: 'https://picsum.photos/200/300?random=$index',
+      image: 'assets/zapatilla${index+1}.jpg',
     ),
   );
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: lista.length,
-        itemBuilder: (context, index) {
-          return CardWidget(cart: lista[index]);
-        }
-      );
+
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverList(
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index) {
+              return CardWidget(cart: lista[index]);
+            },
+            childCount: lista.length,
+          ),
+        ),
+      ],
+    );
   }
 }

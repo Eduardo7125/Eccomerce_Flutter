@@ -1,6 +1,7 @@
 import 'package:ecommerce/components/Appbar.dart';
 import 'package:ecommerce/components/BottomNavigationBar.dart';
 import 'package:ecommerce/components/Product.dart';
+import 'package:ecommerce/database/BBDD.dart';
 import 'package:ecommerce/pages/CartPage.dart';
 import 'package:ecommerce/pages/LandingPage.dart';
 import 'package:ecommerce/tools/Colors.dart';
@@ -15,50 +16,8 @@ import 'package:sqflite/sqflite.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  final database = openDatabase(
-    join(await getDatabasesPath(), 'eccomerce.db'),
-    onCreate: (db, version) {
-    return db.execute(
-      'CREATE TABLE Products(title TEXT PRIMARY KEY, descript TEXT, money REAL, rating REAL, image TEXT)',
-    );
-  },
-  version: 1,
-  );
-  Future<void> insertProduct(Product prod) async {
-    final db = await database;
-    await db.insert(
-      'prod',
-      prod.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
-  }
 
-  Future<List<Product>> Products() async {
-    final db = await database;
-
-    final List<Map<String, Object?>> ProductMaps = await db.query('prod');
-    return [
-      for (final {
-            'title': title as String,
-            'descript': descript as String,
-            'price': price as double,
-            'rating': rating as double,
-            'image': image as String,
-          } in ProductMaps)
-        Product(title: title, descript: descript, price: price, rating: rating, image:image),
-    ];
-  }
-
-  Future<void> updateDog(Product prod) async {
-    final db = await database;
-
-    await db.update(
-      'prod',
-      prod.toMap(),
-      where: 'title = ?',
-      whereArgs: [prod.title],
-    );
-  }
+  await initializeDatabase();
 
   runApp(const MyApp());
 }

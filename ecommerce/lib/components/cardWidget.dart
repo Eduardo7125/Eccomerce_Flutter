@@ -28,7 +28,7 @@ class CardWidget extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.network(
+            Image.asset(
               cart.image,
               width: 100,
               height: 100,
@@ -59,6 +59,7 @@ class CardWidget extends StatelessWidget {
                   ),
                   const SizedBox(height: 10.0),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
                         '\$${cart.price.toStringAsFixed(2)}',
@@ -68,7 +69,6 @@ class CardWidget extends StatelessWidget {
                           color: colorScheme.primary,
                         ),
                       ),
-                      const Spacer(),
                       Row(
                         children: List.generate(
                           5,
