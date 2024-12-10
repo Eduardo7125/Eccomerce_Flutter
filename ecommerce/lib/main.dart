@@ -1,18 +1,10 @@
 import 'package:ecommerce/components/Appbar.dart';
 import 'package:ecommerce/components/BottomNavigationBar.dart';
-import 'package:ecommerce/components/Product.dart';
 import 'package:ecommerce/database/BBDD.dart';
 import 'package:ecommerce/pages/CartPage.dart';
 import 'package:ecommerce/pages/LandingPage.dart';
 import 'package:ecommerce/tools/Colors.dart';
 import 'package:flutter/material.dart';
-
-import 'dart:async';
-
-import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

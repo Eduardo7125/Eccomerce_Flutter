@@ -21,7 +21,7 @@ Future<void> initializeDatabase() async {
 Future<void> insertProduct(Product prod) async {
   final db = database;
   await db.insert(
-    'prod',
+    'Products',
     prod.toMap(),
     conflictAlgorithm: ConflictAlgorithm.replace,
   );

@@ -1,3 +1,4 @@
+import 'package:ecommerce/components/HorizontalScroll.dart';
 import 'package:ecommerce/components/cardWidget.dart';
 import 'package:ecommerce/components/Product.dart';
 import 'package:flutter/material.dart';
@@ -25,17 +26,19 @@ class _LandingState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
 
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index) {
-              return CardWidget(cart: lista[index]);
-            },
-            childCount: lista.length,
-          ),
-        ),
-      ],
-    );
+    return const Horizontalscroll();
+    
+    // return CustomScrollView(
+    //   slivers: <Widget>[
+    //     SliverList(
+    //       delegate: SliverChildBuilderDelegate(
+    //         (BuildContext context, int index) {
+    //           return CardWidget(cart: lista[index]);
+    //         },
+    //         childCount: lista.length,
+    //       ),
+    //     ),
+    //   ],
+    // );
   }
 }
