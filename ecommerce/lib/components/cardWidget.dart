@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce/components/Product.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class CardWidget extends StatelessWidget {
   final Product cart;
+  final bool isVisible;
 
-  const CardWidget({super.key, required this.cart});
+  const CardWidget({super.key, required this.cart, this.isVisible = true});
 
   @override
   Widget build(BuildContext context) {
@@ -25,43 +27,40 @@ class CardWidget extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Image.asset(
               cart.image,
-              width: 100,
-              height: 100,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.width * 0.3,
               fit: BoxFit.cover,
             ),
-            const SizedBox(width: 16.0),
             Expanded(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    cart.title,
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: colorScheme.onSurface,
-                    ),
-                  ),
-                  const SizedBox(height: 6.0),
-                  Text(
-                    cart.descript,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: colorScheme.onSurface.withOpacity(0.7),
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 10.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      Visibility(
+                        visible: isVisible,
+                        child: Expanded(
+                          child: Text(
+                            cart.title,
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w600,
+                              color: colorScheme.onSurface,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        ),
+                      ),
+                      Visibility(
+                        visible: isVisible,
+                        child: Text(
                         '\$${cart.price.toStringAsFixed(2)}',
                         style: TextStyle(
                           fontSize: 16,
@@ -69,19 +68,6 @@ class CardWidget extends StatelessWidget {
                           color: colorScheme.primary,
                         ),
                       ),
-                      Row(
-                        children: List.generate(
-                          5,
-                          (index) => Icon(
-                            index < cart.rating
-                                ? Icons.star
-                                : Icons.star_border,
-                            size: 20,
-                            color: index < cart.rating
-                                ? colorScheme.secondary
-                                : colorScheme.onSurface.withOpacity(0.5),
-                          ),
-                        ),
                       ),
                     ],
                   ),
