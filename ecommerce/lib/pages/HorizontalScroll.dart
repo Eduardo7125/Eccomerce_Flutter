@@ -11,7 +11,6 @@ class Horizontalscroll extends StatefulWidget {
 }
 
 class _LandingState extends State<Horizontalscroll> {
-
   List<Product> lista = List.generate(
     10,
     (index) => Product(
@@ -19,7 +18,7 @@ class _LandingState extends State<Horizontalscroll> {
       descript: 'This is a description of the product $index.',
       price: .99 + index,
       rating: .5 + (index % 5) * 0.5,
-      image: 'assets/zapatilla${index+1}.jpg',
+      image: 'assets/zapatilla${index + 1}.jpg',
     ),
   );
 
@@ -37,10 +36,10 @@ class _LandingState extends State<Horizontalscroll> {
         enableInfiniteScroll: true,
         enlargeCenterPage: true,
         aspectRatio: 2,
-        viewportFraction: 0.6, // Ajuste de tamaño de los elementos
+        viewportFraction: 0.6,
         onPageChanged: (index, reason) {
           setState(() {
-            _currentIndex = index; // Actualiza el índice del elemento visible
+            _currentIndex = index;
           });
         },
       ),

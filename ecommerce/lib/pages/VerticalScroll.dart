@@ -53,9 +53,8 @@ class _VerticalscrollState extends State<Verticalscroll> {
                 final difference = scrollController.offset - itemPositionOffset;
                 final percent = 1 - (difference / 200);
                 double opacity = percent;
-                opacity > 1.0 = 1.0;
-                opacity < 0.0 ?? opacity = 0.0;
-
+                // opacity > 1.0 = 1.0;
+                // opacity < 0.0 ?? opacity = 0.0;
 
                 return Cardwidgetvertical(
                   cart: lista[index],

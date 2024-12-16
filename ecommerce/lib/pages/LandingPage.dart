@@ -11,7 +11,6 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingState extends State<LandingPage> {
-
   List<Product> lista = List.generate(
     10,
     (index) => Product(
@@ -19,20 +18,17 @@ class _LandingState extends State<LandingPage> {
       descript: 'This is a description of the product $index.',
       price: .99 + index,
       rating: .5 + (index % 5) * 0.5,
-      image: 'assets/zapatilla${index+1}.jpg',
+      image: 'assets/zapatilla${index + 1}.jpg',
     ),
   );
 
   @override
-  Widget build(BuildContext context)  => const Scaffold(
-    body: SafeArea(
-      child: Column(
+  Widget build(BuildContext context) => const Scaffold(
+          body: SafeArea(
+              child: Column(
         children: [
           Horizontalscroll(),
-          Verticalscroll()
+          // Verticalscroll()
         ],
-      ) 
-    )
-  ); 
-    
+      )));
 }

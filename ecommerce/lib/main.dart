@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await initializeDatabase();
 
   runApp(const MyApp());
@@ -48,7 +47,7 @@ class _MyAppState extends State<MyApp> {
         colorScheme: darkColorScheme,
         useMaterial3: true,
       ),
-      themeMode: ThemeMode.system, 
+      themeMode: ThemeMode.system,
       home: SafeArea(
         child: Scaffold(
           appBar: const Appbar(),
