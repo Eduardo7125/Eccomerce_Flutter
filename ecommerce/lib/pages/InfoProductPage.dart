@@ -133,11 +133,12 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     width: double.infinity,
                     height: 100,
                     child: SlideAction(
-                      onSubmit: () {
+                      onSubmit: () async {
+                        Future<void>? result;
                         selectedSize != null && selectedColor != null
-                            ? insertProduct(widget.product)
-                            : null;
-                        return null;
+                            ? result = insertProduct(widget.product)
+                            : result = null;
+                        return await result;
                       },
                       child: const Text(
                         'Add to Cart',
