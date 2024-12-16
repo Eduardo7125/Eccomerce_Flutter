@@ -31,6 +31,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         body: Center(
       child: SafeArea(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Hero(
@@ -117,8 +118,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                 border: Border.all(
                                   color:
                                       selectedColor == colors[index].toString()
-                                          ? colorScheme.primary
-                                          : Colors.grey,
+                                          ? colorScheme.onSecondary
+                                          : colorScheme.secondary,
                                   width: 2,
                                 ),
                               ),
@@ -133,15 +134,16 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     width: double.infinity,
                     height: 100,
                     child: SlideAction(
+                      outerColor: Theme.of(context).colorScheme.secondary,
                       onSubmit: () async {
-                        Future<void>? result;
-                        selectedSize != null && selectedColor != null
-                            ? result = insertProduct(widget.product)
-                            : result = null;
-                        return await result;
+                        return await insertProduct(widget.product);
                       },
+                      enabled: selectedSize != null && selectedColor != null
+                          ? true
+                          : false,
+                      innerColor: Theme.of(context).colorScheme.onSecondary,
                       child: const Text(
-                        'Add to Cart',
+                        'Pay now',
                         style: TextStyle(
                           fontSize: 18,
                         ),
